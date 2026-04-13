@@ -41,14 +41,18 @@ public class Exercise2Test {
         driver.findElement(By.name("passwd")).sendKeys(password);
         driver.findElement(By.id("SubmitLogin")).click();
 
-        if (isValid) {
-            Assert.assertTrue(Objects.requireNonNull(driver.getCurrentUrl()).contains("success"));
-        } else {
-            // This will never work
-            Assert.assertTrue(Objects.requireNonNull(driver.getPageSource()).contains("Invalid"));
-        }
+        String url = driver.getCurrentUrl();
 
         driver.navigate().back();
+
+        if (isValid) {
+            Assert.assertNotNull(url);
+            Assert.assertTrue(url.contains("success"));
+        } else {
+            // This will never work
+            Assert.assertNotNull(url);
+            Assert.assertTrue(url.contains("Invalid"));
+        }
     }
 
     @AfterClass
