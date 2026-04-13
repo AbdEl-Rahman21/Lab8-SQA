@@ -2,11 +2,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
-
-import java.util.Objects;
 
 public class Exercise2Test {
     WebDriver driver;
@@ -17,9 +17,21 @@ public class Exercise2Test {
         if (browser.equalsIgnoreCase("edge")) {
             WebDriverManager.edgedriver().setup();
 
+            EdgeOptions options = new EdgeOptions();
+
+            if (System.getenv("CI") != null) {
+                options.addArguments("--headless=new", "--no-sandbox", "--disable-dev-shm-usage");
+            }
+
             driver = new EdgeDriver();
         } else {
             WebDriverManager.firefoxdriver().setup();
+
+            FirefoxOptions options = new FirefoxOptions();
+
+            if (System.getenv("CI") != null) {
+                options.addArguments("--headless");
+            }
 
             driver = new FirefoxDriver();
         }
