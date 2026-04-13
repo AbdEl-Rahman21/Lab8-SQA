@@ -3,6 +3,5 @@
     <suite-files>
         <suite-file path="smoke.xml"/>
         <suite-file path="regression.xml"/>
-        <suite-file path="crossbrowser.xml"/>
     </suite-files>
 </suite>

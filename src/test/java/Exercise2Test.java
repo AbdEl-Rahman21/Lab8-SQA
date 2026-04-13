@@ -61,7 +61,7 @@ public class Exercise2Test {
             Assert.assertNotNull(url);
             Assert.assertTrue(url.contains("success"));
         } else {
-            // This will never work
+            // This will never work (There is no invalid case)
             Assert.assertNotNull(url);
             Assert.assertTrue(url.contains("Invalid"));
         }
