@@ -2,9 +2,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -17,23 +15,11 @@ public class Exercise2Test {
         if (browser.equalsIgnoreCase("edge")) {
             WebDriverManager.edgedriver().setup();
 
-            EdgeOptions options = new EdgeOptions();
-
-            if (System.getenv("CI") != null) {
-                options.addArguments("--headless=new", "--no-sandbox", "--disable-dev-shm-usage");
-            }
-
-            driver = new EdgeDriver(options);
+            driver = new EdgeDriver();
         } else {
             WebDriverManager.firefoxdriver().setup();
 
-            FirefoxOptions options = new FirefoxOptions();
-
-            if (System.getenv("CI") != null) {
-                options.addArguments("--headless");
-            }
-
-            driver = new FirefoxDriver(options);
+            driver = new FirefoxDriver();
         }
 
         driver.get("https://demo.guru99.com/test/login.html");
